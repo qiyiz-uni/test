@@ -10,6 +10,9 @@
 package client;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -18,9 +21,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JScrollPane;
 
 public class ClientGUI {
 
@@ -65,10 +65,9 @@ public class ClientGUI {
 		frame.setMinimumSize(new Dimension(450, 340));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		frame.getContentPane().setLayout(gridBagLayout);
 		frame.setTitle("Client View");
-		
-		wordField = new JTextField();
-		wordField.setColumns(10);
 		
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.addActionListener(new ActionListener() {
@@ -169,61 +168,92 @@ public class ClientGUI {
 			}
 		});
 		
-		JLabel lblMeaning = new JLabel("The Meaning(s) of the word: ");
-		
-		JScrollPane scrollPane = new JScrollPane();
-		
 		JLabel lblWord = new JLabel("Word:");
 		
+		GridBagConstraints gbc_lblWord = new GridBagConstraints();
+		gbc_lblWord.insets = new Insets(5, 5, 0, 0);
+		gbc_lblWord.weightx = 0.5;
+		gbc_lblWord.gridwidth = 4;
+		gbc_lblWord.gridheight = 1;
+		gbc_lblWord.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblWord.gridx = 0;
+		gbc_lblWord.gridy = 0;
+		frame.getContentPane().add(lblWord, gbc_lblWord);
+		
+		wordField = new JTextField();
+		wordField.setColumns(10);
+		
+		GridBagConstraints gbc_wordField = new GridBagConstraints();
+		gbc_wordField.insets = new Insets(0, 0, 0, 0);
+		gbc_wordField.weightx = 0.5;
+		gbc_wordField.gridwidth = 4;
+		gbc_wordField.gridheight = 1;
+		gbc_wordField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_wordField.gridx = 0;
+		gbc_wordField.gridy = 1;
+		frame.getContentPane().add(wordField, gbc_wordField);
+		
+		JLabel lblMeaning = new JLabel("Definition of the word: ");
+		
+		GridBagConstraints gbc_lblMeaning = new GridBagConstraints();
+		gbc_lblMeaning.insets = new Insets(5, 5, 0, 0);
+		gbc_lblMeaning.weightx = 0.5;
+		gbc_lblMeaning.gridwidth = 4;
+		gbc_lblMeaning.gridheight = 1;
+		gbc_lblMeaning.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblMeaning.gridx = 0;
+		gbc_lblMeaning.gridy = 2;
+		frame.getContentPane().add(lblMeaning, gbc_lblMeaning);
+		
 		meaningPane = new JTextArea();
-		scrollPane.setViewportView(meaningPane);
-		meaningPane.setLineWrap(true);
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(5)
-						.addComponent(lblWord, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
-					.addComponent(wordField, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(5)
-					.addComponent(lblMeaning, GroupLayout.PREFERRED_SIZE, 244, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(5)
-					.addComponent(btnAdd, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-					.addGap(25)
-					.addComponent(btnSearch, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-					.addGap(25)
-					.addComponent(btnRemove, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-					.addGap(25)
-					.addComponent(btnUpdate, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-					.addGap(5))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(5)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
-					.addContainerGap())
-		);
 		
+		GridBagConstraints gbc_meaningPane = new GridBagConstraints();
+		gbc_meaningPane.insets = new Insets(5, 5, 0, 5);
+		gbc_meaningPane.weightx = 1;
+		gbc_meaningPane.weighty = 1;
+		gbc_meaningPane.gridwidth = 4;
+		gbc_meaningPane.gridheight = 1;
+		gbc_meaningPane.fill = GridBagConstraints.BOTH;
+		gbc_meaningPane.gridx = 0;
+		gbc_meaningPane.gridy = 3;
+		frame.getContentPane().add(meaningPane, gbc_meaningPane);
 		
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(5)
-					.addComponent(lblWord, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-					.addComponent(wordField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addGap(5)
-					.addComponent(lblMeaning, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-					.addGap(5)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-					.addGap(5)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnUpdate, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(8))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
+		gbc_btnAdd.insets = new Insets(6, 6, 6, 6);
+		gbc_btnAdd.fill = GridBagConstraints.BOTH;
+		gbc_btnAdd.ipady = 20;
+		gbc_btnAdd.gridx = 0;
+		gbc_btnAdd.gridy = 4;
+		gbc_btnAdd.weightx = 1.0;
+		frame.getContentPane().add(btnAdd, gbc_btnAdd);
+		
+		GridBagConstraints gbc_btnSearch = new GridBagConstraints();
+		gbc_btnSearch.insets = new Insets(6, 6, 6, 6);
+		gbc_btnSearch.fill = GridBagConstraints.BOTH;
+		gbc_btnSearch.ipady = 20;
+		gbc_btnSearch.gridx = 1;
+		gbc_btnSearch.gridy = 4;
+		gbc_btnSearch.weightx = 1.0;
+		frame.getContentPane().add(btnSearch, gbc_btnSearch);
+		
+		GridBagConstraints gbc_btnRemove = new GridBagConstraints();
+		gbc_btnRemove.insets = new Insets(6, 6, 6, 6);
+		gbc_btnRemove.fill = GridBagConstraints.BOTH;
+		gbc_btnRemove.ipady = 20;
+		gbc_btnRemove.gridx = 2;
+		gbc_btnRemove.gridy = 4;
+		gbc_btnRemove.weightx = 1.0;
+		frame.getContentPane().add(btnRemove, gbc_btnRemove);
+		
+		GridBagConstraints gbc_btnUpdate = new GridBagConstraints();
+		gbc_btnUpdate.insets = new Insets(6, 6, 6, 6);
+		gbc_btnUpdate.fill = GridBagConstraints.BOTH;
+		gbc_btnUpdate.ipady = 20;
+		gbc_btnUpdate.gridx = 3;
+		gbc_btnUpdate.gridy = 4;
+		gbc_btnUpdate.weightx = 1.0;
+		frame.getContentPane().add(btnUpdate, gbc_btnUpdate);
+		
 	}
 	
 
