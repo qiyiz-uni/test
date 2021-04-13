@@ -12,8 +12,9 @@ package server;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -55,6 +56,8 @@ public class ServerGUI {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setMinimumSize(new Dimension(450, 300));
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		frame.getContentPane().setLayout(gridBagLayout);
 		frame.setTitle("Server View");
 		
 		frame.addWindowListener(new WindowAdapter() {
@@ -64,40 +67,40 @@ public class ServerGUI {
 			}
 		});
 		
+		ipLabel = new JLabel("Address: " + address);
+		
+		GridBagConstraints gbc_ipLabel = new GridBagConstraints();
+		gbc_ipLabel.insets = new Insets(10, 10, 0, 0);
+		gbc_ipLabel.weightx = 0.5;
+		gbc_ipLabel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_ipLabel.gridx = 0;
+		gbc_ipLabel.gridy = 0;
+		frame.getContentPane().add(ipLabel, gbc_ipLabel);
+		
+		portLabel = new JLabel("Port: " + port);
+		
+		GridBagConstraints gbc_portLabel = new GridBagConstraints();
+		gbc_portLabel.insets = new Insets(0, 10, 0, 0);
+		gbc_portLabel.weightx = 0.5;
+		gbc_portLabel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_portLabel.gridx = 0;
+		gbc_portLabel.gridy = 1;
+		frame.getContentPane().add(portLabel, gbc_portLabel);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		
-		ipLabel = new JLabel("Address: " + address);
-		portLabel = new JLabel("Port: " + port);
-	
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(20)
-					.addComponent(ipLabel, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(20)
-					.addComponent(portLabel, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 440, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addComponent(ipLabel, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-					.addComponent(portLabel, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-					.addGap(5)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 170, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(5, 5, 5, 5);
+		gbc_scrollPane.weightx = 1;
+		gbc_scrollPane.weighty = 1;
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 2;
+		frame.getContentPane().add(scrollPane, gbc_scrollPane);
 	}
 
 }

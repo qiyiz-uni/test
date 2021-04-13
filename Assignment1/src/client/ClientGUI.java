@@ -168,17 +168,17 @@ public class ClientGUI {
 			}
 		});
 		
-		JLabel lblWord = new JLabel("Word:");
+		JLabel wordLabel = new JLabel("Word:");
 		
-		GridBagConstraints gbc_lblWord = new GridBagConstraints();
-		gbc_lblWord.insets = new Insets(5, 5, 0, 0);
-		gbc_lblWord.weightx = 0.5;
-		gbc_lblWord.gridwidth = 4;
-		gbc_lblWord.gridheight = 1;
-		gbc_lblWord.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblWord.gridx = 0;
-		gbc_lblWord.gridy = 0;
-		frame.getContentPane().add(lblWord, gbc_lblWord);
+		GridBagConstraints gbc_wordLabel = new GridBagConstraints();
+		gbc_wordLabel.insets = new Insets(5, 5, 0, 0);
+		gbc_wordLabel.weightx = 0.5;
+		gbc_wordLabel.gridwidth = 4;
+		gbc_wordLabel.gridheight = 1;
+		gbc_wordLabel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_wordLabel.gridx = 0;
+		gbc_wordLabel.gridy = 0;
+		frame.getContentPane().add(wordLabel, gbc_wordLabel);
 		
 		wordField = new JTextField();
 		wordField.setColumns(10);
@@ -193,17 +193,17 @@ public class ClientGUI {
 		gbc_wordField.gridy = 1;
 		frame.getContentPane().add(wordField, gbc_wordField);
 		
-		JLabel lblMeaning = new JLabel("Definition of the word: ");
+		JLabel definLabel = new JLabel("Definition of the word: ");
 		
-		GridBagConstraints gbc_lblMeaning = new GridBagConstraints();
-		gbc_lblMeaning.insets = new Insets(5, 5, 0, 0);
-		gbc_lblMeaning.weightx = 0.5;
-		gbc_lblMeaning.gridwidth = 4;
-		gbc_lblMeaning.gridheight = 1;
-		gbc_lblMeaning.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblMeaning.gridx = 0;
-		gbc_lblMeaning.gridy = 2;
-		frame.getContentPane().add(lblMeaning, gbc_lblMeaning);
+		GridBagConstraints gbc_definLabel = new GridBagConstraints();
+		gbc_definLabel.insets = new Insets(5, 5, 0, 0);
+		gbc_definLabel.weightx = 0.5;
+		gbc_definLabel.gridwidth = 4;
+		gbc_definLabel.gridheight = 1;
+		gbc_definLabel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_definLabel.gridx = 0;
+		gbc_definLabel.gridy = 2;
+		frame.getContentPane().add(definLabel, gbc_definLabel);
 		
 		meaningPane = new JTextArea();
 		
